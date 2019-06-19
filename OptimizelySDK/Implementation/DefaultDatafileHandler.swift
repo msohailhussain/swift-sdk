@@ -29,6 +29,8 @@ class DefaultDatafileHandler: OPTDatafileHandler {
     // and our download queue to speed things up.
     let downloadQueue = DispatchQueue(label: "DefaultDatafileHandlerQueue")
     
+    let secureNetwork = SecureNetwork()
+    
     required init() {
         
     }
@@ -64,14 +66,14 @@ class DefaultDatafileHandler: OPTDatafileHandler {
         return datafile
     }
     
-    open func getSession(resourceTimeoutInterval: Double?) -> URLSession {
-        let config = URLSessionConfiguration.ephemeral
-        if let resourceTimeoutInterval = resourceTimeoutInterval,
-            resourceTimeoutInterval > 0 {
-            config.timeoutIntervalForResource = TimeInterval(resourceTimeoutInterval)
-        }
-        return URLSession(configuration: config)
-    }
+//    open func getSession(resourceTimeoutInterval: Double?) -> URLSession {
+//        let config = URLSessionConfiguration.ephemeral
+//        if let resourceTimeoutInterval = resourceTimeoutInterval,
+//            resourceTimeoutInterval > 0 {
+//            config.timeoutIntervalForResource = TimeInterval(resourceTimeoutInterval)
+//        }
+//        return URLSession(configuration: config)
+//    }
     
     open func getRequest(sdkKey: String) -> URLRequest? {
         let str = String(format: endPointStringFormat, sdkKey)
@@ -105,8 +107,9 @@ class DefaultDatafileHandler: OPTDatafileHandler {
                                completionHandler: @escaping DatafileDownloadCompletionHandler) {
         
         downloadQueue.async {
-            let session = self.getSession(resourceTimeoutInterval: resourceTimeoutInterval)
-            
+            //let session = self.getSession(resourceTimeoutInterval: resourceTimeoutInterval)
+            let session = self.secureNetwork.getSession(resourceTimeoutInterval: resourceTimeoutInterval)
+
             guard let request = self.getRequest(sdkKey: sdkKey) else { return }
             
             let task = session.downloadTask(with: request) { (url, response, error) in

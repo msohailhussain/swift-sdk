@@ -1071,6 +1071,8 @@
 		6EF4B4E422383632002DE8B6 /* AtomicProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE644EC223821D3009A5D1D /* AtomicProperty.swift */; };
 		6EF4B4E5223836C1002DE8B6 /* BackgroundingCallbacks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B77D05722370526005AA83F /* BackgroundingCallbacks.swift */; };
 		6EF4B4E6223836C1002DE8B6 /* BackgroundingCallbacks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B77D05722370526005AA83F /* BackgroundingCallbacks.swift */; };
+		6EFC384022B9C22000F39D2F /* SecureNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC383F22B9C22000F39D2F /* SecureNetwork.swift */; };
+		6EFC384122B9C22000F39D2F /* SecureNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC383F22B9C22000F39D2F /* SecureNetwork.swift */; };
 		7D709BF221602C0F885D19AD /* Pods_OptimizelySwiftSDK_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B04909B698F3888941B202B /* Pods_OptimizelySwiftSDK_tvOS.framework */; };
 		C72BD1BB22B12E63003A55E4 /* LoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72BD1BA22B12E63003A55E4 /* LoggerTests.swift */; };
 		C72BD1BC22B12E63003A55E4 /* LoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72BD1BA22B12E63003A55E4 /* LoggerTests.swift */; };
@@ -1330,6 +1332,7 @@
 		6EDE919822273DD700840112 /* optimizely_6372300739_v4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = optimizely_6372300739_v4.json; sourceTree = "<group>"; };
 		6EDE91A122273DD700840112 /* typed_audience_datafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = typed_audience_datafile.json; sourceTree = "<group>"; };
 		6EDE91A422273DD700840112 /* UnsupportedVersionDatafile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UnsupportedVersionDatafile.json; sourceTree = "<group>"; };
+		6EFC383F22B9C22000F39D2F /* SecureNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureNetwork.swift; sourceTree = "<group>"; };
 		7C392E11ABAA00DDA1F864B9 /* Pods_OptimizelyTests_APIs_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelyTests_APIs_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8254240CC67030C578E7F13A /* Pods-OptimizelySwiftSDK-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OptimizelySwiftSDK-iOS.release.xcconfig"; path = "Target Support Files/Pods-OptimizelySwiftSDK-iOS/Pods-OptimizelySwiftSDK-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		8268B42D4E084F1ED5D05151 /* Pods_OptimizelyTests_Common_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OptimizelyTests_Common_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1542,6 +1545,7 @@
 				0B54908A21C9602900BE04C5 /* DefaultNotificationCenter.swift */,
 				0B61624F21B72DCB000D7A28 /* DefaultDecisionService.swift */,
 				0B807B1B21C44E000090DDC8 /* DefaultDatafileHandler.swift */,
+				6EFC383F22B9C22000F39D2F /* SecureNetwork.swift */,
 			);
 			path = Implementation;
 			sourceTree = "<group>";
@@ -2686,6 +2690,7 @@
 				6E4DD84421E524F000B0C2C7 /* DefaultEventDispatcher.swift in Sources */,
 				6E4DD86A21E5251200B0C2C7 /* Audience.swift in Sources */,
 				0B0590192209DC180007F4A2 /* HandlerRegistryService.swift in Sources */,
+				6EFC384122B9C22000F39D2F /* SecureNetwork.swift in Sources */,
 				6E4DD84C21E524FC00B0C2C7 /* Constants.swift in Sources */,
 				6E4DD86621E5250B00B0C2C7 /* BatchEvent.swift in Sources */,
 				6E4DD8FA21E530A900B0C2C7 /* OptimizelyClient.swift in Sources */,
@@ -3407,6 +3412,7 @@
 				6E4DD87321E5251700B0C2C7 /* FeatureFlag.swift in Sources */,
 				6E4DD85121E5250200B0C2C7 /* OPTEventDispatcher.swift in Sources */,
 				0B7B18852231D8B800A1F85D /* DataStoreMemory.swift in Sources */,
+				6EFC384022B9C22000F39D2F /* SecureNetwork.swift in Sources */,
 				0BDF9DC1228242E500CCD8D1 /* SDKVersion.swift in Sources */,
 				6EA4264F22191EEC00B074B5 /* Array+Extension.swift in Sources */,
 				6E4F0D972213A4EF00DD13A5 /* Project.swift in Sources */,

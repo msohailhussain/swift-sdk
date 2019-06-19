@@ -47,6 +47,8 @@ open class DefaultEventDispatcher: BackgroundingCallbacks, OPTEventDispatcher {
     // timer as a atomic property.
     var timer: AtomicProperty<Timer> = AtomicProperty<Timer>()
     
+    let secureNetwork = SecureNetwork()
+    
     public init(batchSize: Int = 10, backingStore: DataStoreType = .file, dataStoreName: String = "OPTEventQueue", timerInterval: TimeInterval = 60*1 ) {
         self.batchSize = batchSize > 0 ? batchSize : 1
         self.backingStore = backingStore
@@ -187,8 +189,11 @@ open class DefaultEventDispatcher: BackgroundingCallbacks, OPTEventDispatcher {
     }
     
     open func sendEvent(event: EventForDispatch, completionHandler: @escaping DispatchCompletionHandler) {
-        let config = URLSessionConfiguration.ephemeral
-        let session = URLSession(configuration: config)
+//        let config = URLSessionConfiguration.ephemeral
+//        let session = URLSession(configuration: config)
+        let session = secureNetwork.getSession(resourceTimeoutInterval: nil)
+        
+        
         var request = URLRequest(url: event.url)
         request.httpMethod = "POST"
         request.httpBody = event.body

@@ -34,37 +34,91 @@ extension SecureNetwork: URLSessionDelegate {
     func urlSession(_ session: URLSession,
                     didReceive challenge: URLAuthenticationChallenge,
                     completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+
+        urlSessionForRootPinning(session, didReceive: challenge, completionHandler: completionHandler)
+        //urlSessionForLeafPinning(session, didReceive: challenge, completionHandler: completionHandler)
+    }
+    
+    func urlSessionForRootPinning(_ session: URLSession,
+                                  didReceive challenge: URLAuthenticationChallenge,
+                                  completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
         
-        let serverTrust = challenge.protectionSpace.serverTrust
-        let certificate = SecTrustGetCertificateAtIndex(serverTrust!, 0)
-        
-        // Set SSL policies for domain name check
-        let policies = NSMutableArray()
-        policies.add(SecPolicyCreateSSL(true, (challenge.protectionSpace.host as CFString)))
-        SecTrustSetPolicies(serverTrust!, policies)
-        
-        // Evaluate server certificate
-        var result: SecTrustResultType = SecTrustResultType(rawValue: 0)!
-        SecTrustEvaluate(serverTrust!, &result)
-        let isServerTrusted = (result == .unspecified || result == .proceed)
-        
-        // Get local and remote cert data
-        let remoteCertificateData = SecCertificateCopyData(certificate!) as Data
-        print("remote certificate: \(String(describing: certificate)) \(remoteCertificateData)")
-        
-        let sshPinFilename = "ssh-pin"
-        
-        guard let certFile = Bundle(for: OptimizelyClient.self).path(forResource: sshPinFilename, ofType: "cer"),
-            let certPinned = try? Data(contentsOf: URL(fileURLWithPath: certFile)) else {
+        guard let serverTrust = challenge.protectionSpace.serverTrust else {
             completionHandler(.cancelAuthenticationChallenge, nil)
             return
         }
         
-        if isServerTrusted && (remoteCertificateData == certPinned) {
-            completionHandler(.useCredential, URLCredential(trust: serverTrust!))
+        // Set SSL policies for domain name check
+        let policies = NSMutableArray()
+        policies.add(SecPolicyCreateSSL(true, (challenge.protectionSpace.host as CFString)))
+        SecTrustSetPolicies(serverTrust, policies)
+
+        // root-cert
+        
+        let sshPinFilename = "DigiCertGlobalRootCA"   // DigiCert Global Root CA (optimizely.com)
+        //let sshPinFilename = "DigiCertGlobalRootG2"     // this is a wrong one for failure testing
+
+        guard let certFile = Bundle(for: OptimizelyClient.self).path(forResource: sshPinFilename, ofType: "cer"),
+            let certPinned = NSData(contentsOf: URL(fileURLWithPath: certFile)),
+            let rootCert = SecCertificateCreateWithData(nil, certPinned) else {
+                completionHandler(.cancelAuthenticationChallenge, nil)
+                return
+        }
+        
+        SecTrustSetAnchorCertificates(serverTrust, NSArray(array: [rootCert]))
+        //SecTrustSetAnchorCertificatesOnly(serverTrust, false) // also allow regular CAs.
+
+        // Evaluate server certificate
+        var result: SecTrustResultType = SecTrustResultType(rawValue: 0)!
+        SecTrustEvaluate(serverTrust, &result)
+        let isServerTrusted = (result == .unspecified || result == .proceed)
+        
+        if isServerTrusted {
+            completionHandler(.useCredential, URLCredential(trust: serverTrust))
         } else {
             completionHandler(.cancelAuthenticationChallenge, nil)
         }
     }
 
+    func urlSessionForLeafPinning(_ session: URLSession,
+                                  didReceive challenge: URLAuthenticationChallenge,
+                                  completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        
+        guard let serverTrust = challenge.protectionSpace.serverTrust else {
+            completionHandler(.cancelAuthenticationChallenge, nil)
+            return
+        }
+        
+        // Set SSL policies for domain name check
+        let policies = NSMutableArray()
+        policies.add(SecPolicyCreateSSL(true, (challenge.protectionSpace.host as CFString)))
+        SecTrustSetPolicies(serverTrust, policies)
+        
+        // Evaluate server certificate
+        var result: SecTrustResultType = SecTrustResultType(rawValue: 0)!
+        SecTrustEvaluate(serverTrust, &result)
+        let isServerTrusted = (result == .unspecified || result == .proceed)
+        
+        // Get local and remote cert data
+        let certificate = SecTrustGetCertificateAtIndex(serverTrust, 0)
+        let remoteCertificateData = SecCertificateCopyData(certificate!) as Data
+        print("remote certificate: \(String(describing: certificate)) \(remoteCertificateData)")
+        
+        // leaf-cert
+        
+        let sshPinFilename = "ssh-pin-root"
+
+        guard let certFile = Bundle(for: OptimizelyClient.self).path(forResource: sshPinFilename, ofType: "cer"),
+            let certPinned = try? Data(contentsOf: URL(fileURLWithPath: certFile)) else {
+                completionHandler(.cancelAuthenticationChallenge, nil)
+                return
+        }
+        
+        if isServerTrusted && (remoteCertificateData == certPinned) {
+            completionHandler(.useCredential, URLCredential(trust: serverTrust))
+        } else {
+            completionHandler(.cancelAuthenticationChallenge, nil)
+        }
+    }
+    
 }

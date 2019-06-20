@@ -350,10 +350,6 @@
 		6E4F0D992213A4EF00DD13A5 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4F0D962213A4EF00DD13A5 /* Project.swift */; };
 		6E4F0D9A2213A4EF00DD13A5 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4F0D962213A4EF00DD13A5 /* Project.swift */; };
 		6E53A6692203872600EA3A61 /* Optimizely.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EBAEB6E21E3FEF800D13AA9 /* Optimizely.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6E56BA3E22BB242600145FB6 /* ssh-pin.cer in Resources */ = {isa = PBXBuildFile; fileRef = 6E56BA3D22BB242600145FB6 /* ssh-pin.cer */; };
-		6E56BA3F22BB242600145FB6 /* ssh-pin.cer in Resources */ = {isa = PBXBuildFile; fileRef = 6E56BA3D22BB242600145FB6 /* ssh-pin.cer */; };
-		6E56BA4122BB24E800145FB6 /* google.cer in Resources */ = {isa = PBXBuildFile; fileRef = 6E56BA4022BB24E800145FB6 /* google.cer */; };
-		6E56BA4222BB24E800145FB6 /* google.cer in Resources */ = {isa = PBXBuildFile; fileRef = 6E56BA4022BB24E800145FB6 /* google.cer */; };
 		6E56BA4322BB274F00145FB6 /* SecureNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC383F22B9C22000F39D2F /* SecureNetwork.swift */; };
 		6E56BA4422BB275100145FB6 /* SecureNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC383F22B9C22000F39D2F /* SecureNetwork.swift */; };
 		6E56BA4522BB275200145FB6 /* SecureNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC383F22B9C22000F39D2F /* SecureNetwork.swift */; };
@@ -364,6 +360,16 @@
 		6E56BA4A22BB275500145FB6 /* SecureNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC383F22B9C22000F39D2F /* SecureNetwork.swift */; };
 		6E56BA4B22BB275600145FB6 /* SecureNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC383F22B9C22000F39D2F /* SecureNetwork.swift */; };
 		6E56BA4C22BB275700145FB6 /* SecureNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFC383F22B9C22000F39D2F /* SecureNetwork.swift */; };
+		6E56BA6422BBF39800145FB6 /* ssh-pin-root.cer in Resources */ = {isa = PBXBuildFile; fileRef = 6E56BA6022BBF39800145FB6 /* ssh-pin-root.cer */; };
+		6E56BA6522BBF39800145FB6 /* ssh-pin-root.cer in Resources */ = {isa = PBXBuildFile; fileRef = 6E56BA6022BBF39800145FB6 /* ssh-pin-root.cer */; };
+		6E56BA6822BBF39800145FB6 /* ssh-pin-leaf.cer in Resources */ = {isa = PBXBuildFile; fileRef = 6E56BA6222BBF39800145FB6 /* ssh-pin-leaf.cer */; };
+		6E56BA6922BBF39800145FB6 /* ssh-pin-leaf.cer in Resources */ = {isa = PBXBuildFile; fileRef = 6E56BA6222BBF39800145FB6 /* ssh-pin-leaf.cer */; };
+		6E56BA6F22BBF3DF00145FB6 /* DigiCertGlobalRootCA.cer in Resources */ = {isa = PBXBuildFile; fileRef = 6E56BA6C22BBF3DF00145FB6 /* DigiCertGlobalRootCA.cer */; };
+		6E56BA7022BBF3DF00145FB6 /* DigiCertGlobalRootCA.cer in Resources */ = {isa = PBXBuildFile; fileRef = 6E56BA6C22BBF3DF00145FB6 /* DigiCertGlobalRootCA.cer */; };
+		6E56BA7122BBF3DF00145FB6 /* DigiCertGlobalRootG2.cer in Resources */ = {isa = PBXBuildFile; fileRef = 6E56BA6D22BBF3DF00145FB6 /* DigiCertGlobalRootG2.cer */; };
+		6E56BA7222BBF3DF00145FB6 /* DigiCertGlobalRootG2.cer in Resources */ = {isa = PBXBuildFile; fileRef = 6E56BA6D22BBF3DF00145FB6 /* DigiCertGlobalRootG2.cer */; };
+		6E56BA7322BBF3DF00145FB6 /* google.cer in Resources */ = {isa = PBXBuildFile; fileRef = 6E56BA6E22BBF3DF00145FB6 /* google.cer */; };
+		6E56BA7422BBF3DF00145FB6 /* google.cer in Resources */ = {isa = PBXBuildFile; fileRef = 6E56BA6E22BBF3DF00145FB6 /* google.cer */; };
 		6E614DD621E3F38A005982A1 /* Optimizely.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E614DCD21E3F389005982A1 /* Optimizely.framework */; };
 		6E636B912236C91F00AF3CEF /* Optimizely.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBAEB6C21E3FEF800D13AA9 /* Optimizely.framework */; };
 		6E636BA02236C96700AF3CEF /* Optimizely.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBAEB6C21E3FEF800D13AA9 /* Optimizely.framework */; };
@@ -1277,8 +1283,11 @@
 		6E4F0D81221389AA00DD13A5 /* AttributeValueTests_Evaluate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributeValueTests_Evaluate.swift; sourceTree = "<group>"; };
 		6E4F0D94221393A500DD13A5 /* RolloutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RolloutTests.swift; sourceTree = "<group>"; };
 		6E4F0D962213A4EF00DD13A5 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
-		6E56BA3D22BB242600145FB6 /* ssh-pin.cer */ = {isa = PBXFileReference; lastKnownFileType = file; name = "ssh-pin.cer"; path = "../../../../ssh-pin.cer"; sourceTree = "<group>"; };
-		6E56BA4022BB24E800145FB6 /* google.cer */ = {isa = PBXFileReference; lastKnownFileType = file; name = google.cer; path = ../../../../google.cer; sourceTree = "<group>"; };
+		6E56BA6022BBF39800145FB6 /* ssh-pin-root.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ssh-pin-root.cer"; sourceTree = "<group>"; };
+		6E56BA6222BBF39800145FB6 /* ssh-pin-leaf.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ssh-pin-leaf.cer"; sourceTree = "<group>"; };
+		6E56BA6C22BBF3DF00145FB6 /* DigiCertGlobalRootCA.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = DigiCertGlobalRootCA.cer; sourceTree = "<group>"; };
+		6E56BA6D22BBF3DF00145FB6 /* DigiCertGlobalRootG2.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = DigiCertGlobalRootG2.cer; sourceTree = "<group>"; };
+		6E56BA6E22BBF3DF00145FB6 /* google.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = google.cer; sourceTree = "<group>"; };
 		6E614DCD21E3F389005982A1 /* Optimizely.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Optimizely.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E614DD521E3F38A005982A1 /* OptimizelyTests-tvOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "OptimizelyTests-tvOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E636B8C2236C91F00AF3CEF /* OptimizelyTests-APIs-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "OptimizelyTests-APIs-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1717,8 +1726,11 @@
 		6E53A668220386BB00EA3A61 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				6E56BA4022BB24E800145FB6 /* google.cer */,
-				6E56BA3D22BB242600145FB6 /* ssh-pin.cer */,
+				6E56BA6C22BBF3DF00145FB6 /* DigiCertGlobalRootCA.cer */,
+				6E56BA6D22BBF3DF00145FB6 /* DigiCertGlobalRootG2.cer */,
+				6E56BA6E22BBF3DF00145FB6 /* google.cer */,
+				6E56BA6222BBF39800145FB6 /* ssh-pin-leaf.cer */,
+				6E56BA6022BBF39800145FB6 /* ssh-pin-root.cer */,
 				6EBAEB6E21E3FEF800D13AA9 /* Optimizely.h */,
 				6EBAEB6F21E3FEF800D13AA9 /* Info.plist */,
 			);
@@ -2201,8 +2213,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E56BA3F22BB242600145FB6 /* ssh-pin.cer in Resources */,
-				6E56BA4222BB24E800145FB6 /* google.cer in Resources */,
+				6E56BA6522BBF39800145FB6 /* ssh-pin-root.cer in Resources */,
+				6E56BA7222BBF3DF00145FB6 /* DigiCertGlobalRootG2.cer in Resources */,
+				6E56BA6922BBF39800145FB6 /* ssh-pin-leaf.cer in Resources */,
+				6E56BA7422BBF3DF00145FB6 /* google.cer in Resources */,
+				6E56BA7022BBF3DF00145FB6 /* DigiCertGlobalRootCA.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2498,8 +2513,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E56BA3E22BB242600145FB6 /* ssh-pin.cer in Resources */,
-				6E56BA4122BB24E800145FB6 /* google.cer in Resources */,
+				6E56BA6422BBF39800145FB6 /* ssh-pin-root.cer in Resources */,
+				6E56BA7122BBF3DF00145FB6 /* DigiCertGlobalRootG2.cer in Resources */,
+				6E56BA6822BBF39800145FB6 /* ssh-pin-leaf.cer in Resources */,
+				6E56BA7322BBF3DF00145FB6 /* google.cer in Resources */,
+				6E56BA6F22BBF3DF00145FB6 /* DigiCertGlobalRootCA.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

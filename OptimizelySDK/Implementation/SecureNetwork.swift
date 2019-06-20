@@ -49,20 +49,22 @@ extension SecureNetwork: URLSessionDelegate {
         let isServerTrusted = (result == .unspecified || result == .proceed)
         
         // Get local and remote cert data
-        let remoteCertificateData = SecCertificateCopyData(certificate!)
-        print("remote certificate: \(certificate) \(remoteCertificateData)")
-
-//        let pathToCert = NSBundle.mainBundle().pathForResource(githubCert, ofType: "cer")
-//        let localCertificate:NSData = NSData(contentsOfFile: pathToCert!)!
-//
-//        if (isServerTrusted && remoteCertificateData.isEqualToData(localCertificate)) {
-//            let credential:NSURLCredential = NSURLCredential(forTrust: serverTrust!)
-//            completionHandler(.UseCredential, credential)
-//        } else {
-//            completionHandler(.CancelAuthenticationChallenge, nil)
-//        }
+        let remoteCertificateData = SecCertificateCopyData(certificate!) as Data
+        print("remote certificate: \(String(describing: certificate)) \(remoteCertificateData)")
         
-        completionHandler(.useCredential, URLCredential(trust: challenge.protectionSpace.serverTrust!))
+        let sshPinFilename = "ssh-pin"
+        
+        guard let certFile = Bundle(for: OptimizelyClient.self).path(forResource: sshPinFilename, ofType: "cer"),
+            let certPinned = try? Data(contentsOf: URL(fileURLWithPath: certFile)) else {
+            completionHandler(.cancelAuthenticationChallenge, nil)
+            return
+        }
+        
+        if isServerTrusted && (remoteCertificateData == certPinned) {
+            completionHandler(.useCredential, URLCredential(trust: serverTrust!))
+        } else {
+            completionHandler(.cancelAuthenticationChallenge, nil)
+        }
     }
 
 }

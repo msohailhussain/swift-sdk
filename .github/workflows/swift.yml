@@ -14,6 +14,14 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build
-      run: swift build -v
+      env:
+        SCHEME: "OptimizelySwiftSDK-iOS"
+        TEST_SDK: "iphonesimulator"
+        PLATFORM: "iOS Simulator" 
+        OS: 13.2
+        NAME: iPhone X
+      run: |
+        pod repo update
+        pod install
     - name: Run tests
-      run: swift test -v
+      run: xcodebuild test -workspace OptimizelySwiftSDK.xcworkspace -scheme $SCHEME -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk $TEST_SDK -destination "platform=$PLATFORM,OS=$OS,name=$NAME" ONLY_ACTIVE_ARCH=YES

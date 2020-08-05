@@ -1,0 +1,27 @@
+name: Swift
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build
+      env:
+        SCHEME: "OptimizelySwiftSDK-iOS"
+        TEST_SDK: "iphonesimulator"
+        PLATFORM: "iOS Simulator" 
+        OS: 13.6
+        NAME: iPhone 11
+      run: |
+        pod repo update
+        pod install
+        xcodebuild test -workspace OptimizelySwiftSDK.xcworkspace -scheme $SCHEME -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk $TEST_SDK -destination "platform=$PLATFORM,OS=$OS,name=$NAME" ONLY_ACTIVE_ARCH=YES
+        

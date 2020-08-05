@@ -18,8 +18,8 @@ jobs:
         SCHEME: "OptimizelySwiftSDK-iOS"
         TEST_SDK: "iphonesimulator"
         PLATFORM: "iOS Simulator" 
-        OS: 13.2
-        NAME: iPhone X
+        OS: 13.6
+        NAME: iPhone 11
       run: |
         pod repo update
         pod install

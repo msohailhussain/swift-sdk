@@ -12,7 +12,7 @@ jobs:
     runs-on: macos-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions-hub/docker@master
     - name: Try docker
       run: |
         docker -v
